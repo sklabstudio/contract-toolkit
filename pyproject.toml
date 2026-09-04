@@ -41,6 +41,9 @@ sklab-contract = "sklab_contract_toolkit.cli:app"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+sklab_contract_toolkit = ["py.typed", "skills/data/*.yaml"]
+
 [tool.ruff]
 target-version = "py312"
 line-length = 120

@@ -63,10 +63,23 @@ _FIX_SNIPPETS: dict[str, str] = {
 
 
 def _load_finding(ref: str, root: Path) -> ContractFinding | None:
-    """Resolve a finding ref: rule-id prefix match against current analysis."""
+    """Resolve a finding ref: rule-id prefix match against current analysis.
+
+    Searches internal rules first, then Slither findings (when installed), so
+    every ID emitted by `analyze` resolves in `fix`/`verify`.
+    """
     for finding in run_internal_analysis(root):
         if finding.id == ref or finding.rule_id == ref or ref in finding.id:
             return finding
+    try:
+        from sklab_contract_toolkit.analysis.slither_norm import run_slither
+
+        slither = run_slither(root)
+        for finding in slither.get("findings", []) or []:
+            if finding.id == ref or finding.rule_id == ref or ref in finding.id:
+                return finding
+    except Exception:
+        pass
     return None
 
 
