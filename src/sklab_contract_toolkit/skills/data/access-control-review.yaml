@@ -1,0 +1,16 @@
+name: access-control-review
+description: Extract authorities, roles, and privileged functions; review least privilege.
+workflow:
+  - Inspect authority records (authority/capability/target/evidence/confidence).
+  - Flag broad owner/admin powers and hardcoded privileged addresses.
+  - Do not overclaim custom role semantics.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - path
+outputs:
+  - authority review notes

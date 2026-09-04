@@ -1,0 +1,5 @@
+invariant_solvency:
+  runs: 256
+  depth: 15
+  kind: explicit
+  expected: INCONCLUSIVE

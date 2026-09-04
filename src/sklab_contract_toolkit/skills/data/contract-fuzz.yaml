@@ -1,0 +1,17 @@
+name: contract-fuzz
+description: Run fuzz tests (Foundry/Echidna) with recorded seed and runs for reproducibility.
+workflow:
+  - Run `sklab-contract fuzz <path> --runs N --seed S`.
+  - Record seed, runs, failures, counterexample, tool version.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - path
+  - runs
+  - seed
+outputs:
+  - fuzz results JSON

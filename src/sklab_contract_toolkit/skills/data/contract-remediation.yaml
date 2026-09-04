@@ -1,0 +1,16 @@
+name: contract-remediation
+description: Generate remediation patches in isolated workspaces; never modify the source repo directly.
+workflow:
+  - Run `sklab-contract fix <finding-or-report> --out <dir>`.
+  - Return a patch; do not push automatically.
+permissions:
+  filesystem_read: true
+  filesystem_write: true
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - finding
+  - out
+outputs:
+  - patch file

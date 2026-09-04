@@ -1,0 +1,16 @@
+name: abi-diff-review
+description: Diff contract ABIs for upgrades and releases.
+workflow:
+  - Run `sklab-contract abi-diff <old> <new>`.
+  - Report added/removed functions, selector changes, events, errors, mutability changes.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - old
+  - new
+outputs:
+  - ABI diff JSON

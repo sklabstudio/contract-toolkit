@@ -1,0 +1,16 @@
+name: upgradeability-review
+description: Review proxy pattern, admin, initializer, and storage compatibility between versions.
+workflow:
+  - Run `sklab-contract upgrade-review <old> <new>`.
+  - Expect SAFE/RISKY/INCOMPATIBLE/INCONCLUSIVE with evidence.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - old
+  - new
+outputs:
+  - upgrade verdict JSON

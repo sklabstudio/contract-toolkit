@@ -1,0 +1,16 @@
+name: contract-test
+description: Run Foundry/Hardhat tests and normalize results.
+workflow:
+  - Run `sklab-contract test <path>`.
+  - Normalize total/passed/failed/skipped/duration/failures.
+  - Preserve raw tool output separately.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - path
+outputs:
+  - normalized test summary

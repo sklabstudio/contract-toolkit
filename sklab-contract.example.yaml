@@ -1,0 +1,38 @@
+schema_version: 1
+
+project:
+  chain: auto
+  toolchain: auto
+  root: .
+
+evm:
+  preferred_toolchain: foundry
+
+analysis:
+  static: true
+  fuzz: true
+  invariants: true
+  timeout_seconds: 300
+
+tools:
+  slither: auto
+  echidna: auto
+  mythril: auto
+  halmos: auto
+  aderyn: auto
+  solhint: auto
+
+network:
+  allow_readonly_rpc: false
+
+chains:
+  ethereum:
+    rpc_url_env: ETH_RPC_URL
+  sepolia:
+    rpc_url_env: SEPOLIA_RPC_URL
+  polygon:
+    rpc_url_env: POLYGON_RPC_URL
+
+remediation:
+  isolated: true
+  require_verification: true

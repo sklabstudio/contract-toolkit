@@ -1,0 +1,15 @@
+name: contract-release-check
+description: Pre-release gate — compile, tests, analysis, ABI diff, upgrade review, and report generation.
+workflow:
+  - Run inspect, compile, test, analyze, abi-diff, and report generation.
+  - Confirm scan fingerprint stability across identical inputs.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - path
+outputs:
+  - release checklist + report bundle

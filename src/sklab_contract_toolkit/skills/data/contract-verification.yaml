@@ -1,0 +1,15 @@
+name: contract-verification
+description: Verify remediations by re-running compile, tests, analyzers, and fuzz where applicable.
+workflow:
+  - Run `sklab-contract verify <finding-or-report>`.
+  - Expect FIXED_VERIFIED / FIXED_UNVERIFIED / NOT_FIXED / REGRESSION / INCONCLUSIVE.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - finding
+outputs:
+  - verification result JSON

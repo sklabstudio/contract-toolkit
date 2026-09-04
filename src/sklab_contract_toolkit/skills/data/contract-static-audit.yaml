@@ -1,0 +1,16 @@
+name: contract-static-audit
+description: Run internal deterministic checks plus Slither when available; normalize and dedupe findings.
+workflow:
+  - Run `sklab-contract analyze <path>`.
+  - Normalize all findings to ContractFinding; preserve Slither detector IDs.
+  - Separate severity from confidence; never claim exploitability without evidence.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - path
+outputs:
+  - normalized findings JSON

@@ -1,0 +1,15 @@
+name: gas-review
+description: Review gas hotspots and regressions from forge reports or heuristics.
+workflow:
+  - Run `sklab-contract gas <path>`.
+  - Report hotspots and regressions; never sacrifice security for gas.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - path
+outputs:
+  - gas report JSON

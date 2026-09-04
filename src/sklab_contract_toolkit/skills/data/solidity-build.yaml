@@ -1,0 +1,16 @@
+name: solidity-build
+description: Compile a Solidity project with the detected toolchain and record fingerprints.
+workflow:
+  - Run `sklab-contract compile <path>`.
+  - Record compiler, version, warnings, errors, artifact paths, build fingerprint.
+  - Never deploy; no transactions.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - path
+outputs:
+  - compile result JSON

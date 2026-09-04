@@ -1,0 +1,16 @@
+name: contract-address-inspect
+description: Read-only inspection of a deployed contract address (code, verified ABI, proxy slots). No transactions.
+workflow:
+  - Run `sklab-contract inspect-address <chain> <address>`.
+  - Requires explicit read-only RPC configuration; never use private keys.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: true
+  secrets: false
+inputs:
+  - chain
+  - address
+outputs:
+  - address inspection JSON

@@ -1,0 +1,3 @@
+# Integrations
+
+See `remediation.md`.

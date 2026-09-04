@@ -1,0 +1,15 @@
+name: contract-invariants
+description: Check explicit/user-provided/public-standard invariants only; never auto-mine proprietary invariants.
+workflow:
+  - Run `sklab-contract invariants <path>`.
+  - Report property/status/runs/depth/counterexample per invariant.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - path
+outputs:
+  - invariant results JSON

@@ -1,0 +1,17 @@
+name: contract-inspect
+description: Inspect a contract project — detect chain/project, inventory contracts, standards, authorities.
+workflow:
+  - Run `sklab-contract inspect <path> --json` for machine-readable inventory.
+  - Review detected standards with confidence; never overclaim custom semantics.
+  - Review authority graph for privileged functions.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - path
+outputs:
+  - contract inventory JSON
+  - standards + authorities

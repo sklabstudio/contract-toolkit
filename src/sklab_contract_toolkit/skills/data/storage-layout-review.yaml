@@ -1,0 +1,16 @@
+name: storage-layout-review
+description: Extract and deterministically compare storage layouts for upgrade safety.
+workflow:
+  - Extract layouts from solc metadata / Foundry / Hardhat artifacts.
+  - Diff slots, offsets, types, labels; flag insertions, removals, type changes.
+permissions:
+  filesystem_read: true
+  filesystem_write: false
+  shell: true
+  network: false
+  secrets: false
+inputs:
+  - old
+  - new
+outputs:
+  - storage diff JSON

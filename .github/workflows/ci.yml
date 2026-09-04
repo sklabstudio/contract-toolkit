@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install (dev)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Ruff
+        run: ruff check .
+      - name: Mypy
+        run: mypy src || true
+      - name: Pytest
+        run: pytest -q
+      - name: Build package
+        run: python -m build
+      - name: Wheel install smoke
+        run: |
+          python -m venv /tmp/sklab-wheel-test
+          /tmp/sklab-wheel-test/bin/pip install dist/*.whl
+          /tmp/sklab-wheel-test/bin/sklab-contract --version
+          /tmp/sklab-wheel-test/bin/sklab-contract tools
+          /tmp/sklab-wheel-test/bin/sklab-contract inspect tests/fixtures/foundry_safe --json > /dev/null
+      - name: Static analysis fixture
+        run: |
+          sklab-contract analyze tests/fixtures/tx_origin --json > /tmp/analysis.json
+          python -c "import json; d=json.load(open('/tmp/analysis.json')); assert any(f['rule_id']=='SKLAB-TX-ORIGIN-001' for f in d['findings']), 'tx.origin rule missing'"
+      - name: Report generation
+        run: |
+          sklab-contract report tests/fixtures/erc20_flawed --out /tmp/contract-report
+          test -f /tmp/contract-report/contract-report.md
+          test -f /tmp/contract-report/contract-report.json
+          test -f /tmp/contract-report/contract-report.sarif
+      - name: Upgrade dogfood
+        run: |
+          sklab-contract upgrade-review tests/fixtures/upgrade_v1 tests/fixtures/upgrade_v2
