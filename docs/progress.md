@@ -22,4 +22,6 @@ resume without redoing verified work.
 - [x] Quality gate: pytest (42 passed) + ruff (clean) + mypy (clean) + build + wheel smoke
 - [x] Docs + README + CI
 - [x] Security audit (no shell=True, no keys, no broadcast, no proprietary logic, no secrets)
-- [ ] Publish PUBLIC GitHub repository + verify CI green
+- [x] Publish PUBLIC GitHub repository + verify CI green
+- [x] v0.1.0 FROZEN (2026-09-04): repo public, main branch, HEAD in sync, tree clean,
+      CI green, package builds, wheel installs, fixture analysis green.
